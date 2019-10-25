@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DayNightView" customModule="Demo" customModuleProvider="target">
+            <connections>
+                <outlet property="toggleButton" destination="06z-Iq-AkX" id="ymn-e2-bCe"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="419" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2VB-gP-54f" userLabel="ContentView">
+                    <rect key="frame" x="0.0" y="0.0" width="419" height="60"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="06z-Iq-AkX">
+                            <rect key="frame" x="162" y="10" width="95" height="41"/>
+                            <segments>
+                                <segment title="Day"/>
+                                <segment title="Night"/>
+                            </segments>
+                            <connections>
+                                <action selector="didChangedValue:" destination="-1" eventType="valueChanged" id="hGa-iQ-fIN"/>
+                            </connections>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="06z-Iq-AkX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2VB-gP-54f" secondAttribute="leading" constant="10" id="JFO-SM-Xwh"/>
+                        <constraint firstAttribute="height" constant="60" id="M0u-HW-HI0"/>
+                        <constraint firstItem="06z-Iq-AkX" firstAttribute="top" secondItem="2VB-gP-54f" secondAttribute="top" constant="10" id="Mb7-5O-Fix"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="06z-Iq-AkX" secondAttribute="trailing" constant="10" id="mt7-HF-6TJ"/>
+                        <constraint firstItem="06z-Iq-AkX" firstAttribute="centerX" secondItem="2VB-gP-54f" secondAttribute="centerX" id="o0w-sZ-et0"/>
+                        <constraint firstAttribute="bottom" secondItem="06z-Iq-AkX" secondAttribute="bottom" constant="10" id="w0a-2B-qAm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="2VB-gP-54f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5yj-un-uG1"/>
+                <constraint firstItem="2VB-gP-54f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BIY-6W-ETj"/>
+                <constraint firstAttribute="trailing" secondItem="2VB-gP-54f" secondAttribute="trailing" id="joh-bs-1pB"/>
+                <constraint firstAttribute="bottom" secondItem="2VB-gP-54f" secondAttribute="bottom" id="tA2-Za-WHU"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139.85507246376812" y="-39.508928571428569"/>
+        </view>
+    </objects>
+</document>
