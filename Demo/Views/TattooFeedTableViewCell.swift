@@ -52,18 +52,49 @@ class TattooFeedCollectionViewCell: UICollectionViewCell {
         reset()
     }
 
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        setNeedsLayout()
+        layoutIfNeeded()
+
+        let preferredLayoutAttributes = layoutAttributes
+
+        var fittingSize = UIView.layoutFittingCompressedSize
+        fittingSize.width = preferredLayoutAttributes.size.width
+        let size = systemLayoutSizeFitting(fittingSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow)
+        var adjustedFrame = preferredLayoutAttributes.frame
+        adjustedFrame.size.height = ceil(size.height)
+        preferredLayoutAttributes.frame = adjustedFrame
+
+        return preferredLayoutAttributes
+    }
+    
     func downloadImage(with url: String) {
         ConnectionManager.downloadImage(with: url) {
-            (image, error) in
+            (image, error, cached) in
             
             DispatchQueue.global(qos: .userInitiated).async {
                 DispatchQueue.main.async {
                     [unowned self] in
                       
                     guard let image = image else { return }
-                    self.imageView?.image = image
                     
-                    UIView.animate(withDuration: 1) {
+                    /*
+                    let newSize = CGSize(width: 207, height: 207)
+                    let renderer = UIGraphicsImageRenderer(size: newSize)
+                    let imageResized = renderer.image { _ in
+                        image.draw(in: CGRect.init(origin: CGPoint.zero, size: newSize))
+                    }
+*/
+                    
+                    self.imageView?.image = image //Resized
+                    
+                    if !cached {
+                        self.imageView.alpha = 0
+
+                        UIView.animate(withDuration: 1) {
+                            self.imageView.alpha = 1
+                        }
+                    } else {
                         self.imageView.alpha = 1
                     }
                 }

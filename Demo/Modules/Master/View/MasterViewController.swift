@@ -73,6 +73,15 @@ class MasterViewController: UIViewController {
     
     private func setup() {
         addObservers()
+        
+        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        let cellWidth = UIScreen.main.bounds.width / 2
+        let cellHeight = UIScreen.main.bounds.height / 2
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        layout.estimatedItemSize = CGSize(width: cellWidth, height: cellHeight)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
     }
     
     private func addObservers() {
@@ -173,15 +182,41 @@ extension MasterViewController : MasterViewControllerProtocol {
     func populate(_ tattooFeed: TattooFeed) {
         self.tattooFeed = tattooFeed
 
+
         if let tattoos = tattooFeed.data {
             isLoadingNewPage = false
-            self.tattoos.append(contentsOf: tattoos)
-        }
-        
-        DispatchQueue.main.async {
-            [unowned self] in
             
-            self.collectionView?.reloadData()
+            if self.tattoos.count == 0 {
+                
+                self.tattoos.append(contentsOf: tattoos)
+
+                DispatchQueue.main.async {
+                    [unowned self] in
+                    
+                    self.collectionView?.reloadData()
+                }
+            } else {
+                let newAmountOfItemsAfterUpdate = self.tattoos.count + tattoos.count
+                
+                DispatchQueue.main.async {
+                    [unowned self] in
+
+                    let previousTattoosNumber = self.tattoos.count
+                    
+                    self.tattoos.append(contentsOf: tattoos)
+
+                    var indexPaths = [IndexPath]()
+                    
+                    for index in previousTattoosNumber ..< newAmountOfItemsAfterUpdate  {
+                        let indexPath = IndexPath.init(row: index, section: 0)
+                        indexPaths.append(indexPath)
+                    }
+                    
+                    if indexPaths.count > 0 {
+                        self.collectionView?.insertItems(at: indexPaths)
+                    }
+                }
+            }
         }
     }
 }

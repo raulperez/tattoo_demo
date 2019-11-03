@@ -209,34 +209,39 @@
                                     <constraint firstAttribute="bottom" secondItem="KOY-yD-4mw" secondAttribute="bottom" id="lqW-QT-sHJ"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="eHO-te-c1d">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" id="eHO-te-c1d">
                                 <rect key="frame" x="0.0" y="60" width="414" height="714"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <viewLayoutGuide key="safeArea" id="j9t-DT-8pe"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="UWd-sT-HEm">
-                                    <size key="itemSize" width="0.0" height="0.0"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="UWd-sT-HEm">
+                                    <size key="itemSize" width="207" height="207"/>
+                                    <size key="estimatedItemSize" width="207" height="207"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="8cX-Ip-tr5" customClass="TattooFeedCollectionViewCell" customModule="Demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="207"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sw8-Dp-cV1">
-                                            <rect key="frame" x="0.0" y="0.0" width="207" height="50"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="zYq-fz-kaI">
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="207"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-7A-ehc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="207" height="50"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CgE-7A-ehc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="207" height="207"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="CgE-7A-ehc" secondAttribute="height" multiplier="1:1" id="clM-y0-Bxg"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="regular"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="CgE-7A-ehc" secondAttribute="bottom" id="6cr-S9-pgy"/>
                                                 <constraint firstAttribute="trailing" secondItem="CgE-7A-ehc" secondAttribute="trailing" id="OGa-eA-CyE"/>
-                                                <constraint firstItem="CgE-7A-ehc" firstAttribute="top" secondItem="sw8-Dp-cV1" secondAttribute="top" id="Ovu-ck-2vg"/>
-                                                <constraint firstItem="CgE-7A-ehc" firstAttribute="leading" secondItem="sw8-Dp-cV1" secondAttribute="leading" id="RRf-O7-O1o"/>
+                                                <constraint firstItem="CgE-7A-ehc" firstAttribute="top" secondItem="zYq-fz-kaI" secondAttribute="top" id="Ovu-ck-2vg"/>
+                                                <constraint firstItem="CgE-7A-ehc" firstAttribute="leading" secondItem="zYq-fz-kaI" secondAttribute="leading" id="RRf-O7-O1o"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>

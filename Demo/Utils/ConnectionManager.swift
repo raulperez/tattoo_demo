@@ -62,7 +62,6 @@ class ConnectionManager: NSObject {
             completion(false, nil, CustomErrors.invalidOrEmptyURL)
             return
         }
-        
 
         let session = URLSession.shared
         
@@ -99,23 +98,29 @@ class ConnectionManager: NSObject {
         }.resume()
     }
     
-    static func downloadImage(with url: String, completion: @escaping (UIImage?, Error?) -> ()) {
+    static func downloadImage(with url: String, completion: @escaping (UIImage?, Error?, Bool) -> ()) {
         guard let url = URL(string: url) else {
             print("URL is empty or invalid")
 
-            completion(nil, CustomErrors.invalidOrEmptyURL)
+            completion(nil, CustomErrors.invalidOrEmptyURL, false)
             return
         }
         
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-
-            guard let data = data, error == nil else {
-                completion(nil, error)
-                return
-            }
-            
-            completion(UIImage(data: data), nil)
-        }.resume()
+        let request = URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 60)
+        
+        if let data = URLCache.shared.cachedResponse(for: request)?.data {
+            completion(UIImage(data: data), nil, true)
+        } else {
+            URLSession.shared.dataTask(with: request) {
+                (data, response, error) in
+                
+                guard let data = data, error == nil else {
+                    completion(nil, error, false)
+                    return
+                }
+                
+                completion(UIImage(data: data), nil, false)
+            }.resume()
+        }
     }
 }

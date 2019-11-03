@@ -27,7 +27,7 @@ extension DetailPresenter : DetailPresenterProtocol {
 
     func downloadTattooImage(with url: String) {
         ConnectionManager.downloadImage(with: url) {
-            [unowned self] (image, error) in
+            [unowned self] (image, error, cached) in
 
             guard let image = image else { return }
             self.viewController?.populateTattooImage(with: image)
@@ -36,7 +36,7 @@ extension DetailPresenter : DetailPresenterProtocol {
 
     func downloadArtistImage(with url: String) {
         ConnectionManager.downloadImage(with: url) {
-            (image, error) in
+            (image, error, cached) in
             
             guard let image = image else { return }
             self.viewController?.populateArtistImage(with: image)
