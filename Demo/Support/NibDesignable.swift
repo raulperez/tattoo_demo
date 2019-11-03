@@ -32,13 +32,7 @@ public class NibDesignable: UIView {
         filesOwner = self
         
         if let innerView = innerView as? UIView {
-            self.addSubview(innerView)
-            
-            translatesAutoresizingMaskIntoConstraints = false
-            
-            self.centerXAnchor.constraint(equalTo: innerView.centerXAnchor, constant: 0).isActive = true
-            self.centerYAnchor.constraint(equalTo: innerView.centerYAnchor, constant: 0).isActive = true
-
+            self.addSubview(innerView)            
         }
     }
     

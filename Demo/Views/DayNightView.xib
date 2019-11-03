@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,8 +20,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2VB-gP-54f" userLabel="ContentView">
                     <rect key="frame" x="0.0" y="0.0" width="419" height="60"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYl-Mg-nAl">
+                            <rect key="frame" x="0.0" y="0.0" width="157" height="60"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="06z-Iq-AkX">
-                            <rect key="frame" x="162" y="10" width="95" height="41"/>
+                            <rect key="frame" x="157" y="10" width="105" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="105" id="R1A-Oa-D6d"/>
+                            </constraints>
                             <segments>
                                 <segment title="Day"/>
                                 <segment title="Night"/>
@@ -31,14 +37,24 @@
                                 <action selector="didChangedValue:" destination="-1" eventType="valueChanged" id="hGa-iQ-fIN"/>
                             </connections>
                         </segmentedControl>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCa-Rp-xAb">
+                            <rect key="frame" x="262" y="0.0" width="157" height="60"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="06z-Iq-AkX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2VB-gP-54f" secondAttribute="leading" constant="10" id="JFO-SM-Xwh"/>
+                        <constraint firstItem="06z-Iq-AkX" firstAttribute="leading" secondItem="WYl-Mg-nAl" secondAttribute="trailing" id="6dz-mF-gtn"/>
+                        <constraint firstItem="xCa-Rp-xAb" firstAttribute="top" secondItem="2VB-gP-54f" secondAttribute="top" id="Hez-Vn-9yM"/>
                         <constraint firstAttribute="height" constant="60" id="M0u-HW-HI0"/>
+                        <constraint firstAttribute="bottom" secondItem="xCa-Rp-xAb" secondAttribute="bottom" id="MNK-cw-Nia"/>
                         <constraint firstItem="06z-Iq-AkX" firstAttribute="top" secondItem="2VB-gP-54f" secondAttribute="top" constant="10" id="Mb7-5O-Fix"/>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="06z-Iq-AkX" secondAttribute="trailing" constant="10" id="mt7-HF-6TJ"/>
-                        <constraint firstItem="06z-Iq-AkX" firstAttribute="centerX" secondItem="2VB-gP-54f" secondAttribute="centerX" id="o0w-sZ-et0"/>
+                        <constraint firstItem="WYl-Mg-nAl" firstAttribute="top" secondItem="2VB-gP-54f" secondAttribute="top" id="RwF-Vk-Gor"/>
+                        <constraint firstAttribute="bottom" secondItem="WYl-Mg-nAl" secondAttribute="bottom" id="d7l-t0-bqg"/>
+                        <constraint firstAttribute="trailing" secondItem="xCa-Rp-xAb" secondAttribute="trailing" id="gQl-q8-BKv"/>
+                        <constraint firstItem="WYl-Mg-nAl" firstAttribute="leading" secondItem="2VB-gP-54f" secondAttribute="leading" id="jJB-wn-yTz"/>
+                        <constraint firstItem="xCa-Rp-xAb" firstAttribute="leading" secondItem="06z-Iq-AkX" secondAttribute="trailing" id="o4M-6u-XHh"/>
+                        <constraint firstItem="xCa-Rp-xAb" firstAttribute="width" secondItem="WYl-Mg-nAl" secondAttribute="width" id="t1W-1U-I8Y"/>
                         <constraint firstAttribute="bottom" secondItem="06z-Iq-AkX" secondAttribute="bottom" constant="10" id="w0a-2B-qAm"/>
                     </constraints>
                 </view>

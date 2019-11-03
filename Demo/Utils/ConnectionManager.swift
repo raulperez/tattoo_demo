@@ -44,7 +44,7 @@ class ConnectionManager: NSObject {
             do {
                 let tattooFeed = try JSONDecoder().decode(TattooFeed.self, from: data)
 
-                print("Response data:", tattooFeed)
+                //print("Response data:", tattooFeed)
 
                 completion(true, tattooFeed, nil)
             } catch let error {
@@ -82,7 +82,7 @@ class ConnectionManager: NSObject {
             do {
                 let tattooData = try JSONDecoder().decode(TattooDetail.self, from: data)
 
-                print("Response data:", tattooData)
+                //print("Response data:", tattooData)
 
                 guard let tattoo = tattooData.data else {
                     print("Error parsing data")
