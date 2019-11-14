@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CustomErrors: Error {
+enum CustomError: Error {
     case pageInvalid
     case cannotReadPlist
     case cannotWritePlist

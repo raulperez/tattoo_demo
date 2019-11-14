@@ -21,4 +21,7 @@ class DetailInteractor {
 
 extension DetailInteractor : DetailInteractorProtocol {
 
+    func downloadImage(with url: String, completion: ImageHandler? = nil) {
+        ConnectionManager.downloadImage(with: url, completion: completion)
+    }
 }

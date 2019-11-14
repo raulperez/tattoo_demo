@@ -33,7 +33,7 @@
 		C4AA21D0224B79A300AF87E3 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA21B9224B79A300AF87E3 /* DetailRouter.swift */; };
 		C4AA21D3224B79A300AF87E3 /* DetailRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA21BA224B79A300AF87E3 /* DetailRouterProtocol.swift */; };
 		C4AA21D8224B7F7400AF87E3 /* TattooFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA21D7224B7F7400AF87E3 /* TattooFeed.swift */; };
-		C4AA21E2224B8AD400AF87E3 /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA21E1224B8AD400AF87E3 /* CustomErrors.swift */; };
+		C4AA21E2224B8AD400AF87E3 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA21E1224B8AD400AF87E3 /* CustomError.swift */; };
 		C4AA21EF224BCD3600AF87E3 /* DayNightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AA21EE224BCD3600AF87E3 /* DayNightView.xib */; };
 		C4AA21F3224BCD8400AF87E3 /* DayNightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA21F2224BCD8400AF87E3 /* DayNightView.swift */; };
 		C4AA21F8224BCEFE00AF87E3 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AA21F7224BCEFE00AF87E3 /* NibDesignable.swift */; };
@@ -82,7 +82,7 @@
 		C4AA21B9224B79A300AF87E3 /* DetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		C4AA21BA224B79A300AF87E3 /* DetailRouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRouterProtocol.swift; sourceTree = "<group>"; };
 		C4AA21D7224B7F7400AF87E3 /* TattooFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TattooFeed.swift; sourceTree = "<group>"; };
-		C4AA21E1224B8AD400AF87E3 /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
+		C4AA21E1224B8AD400AF87E3 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		C4AA21EE224BCD3600AF87E3 /* DayNightView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayNightView.xib; sourceTree = "<group>"; };
 		C4AA21F2224BCD8400AF87E3 /* DayNightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNightView.swift; sourceTree = "<group>"; };
 		C4AA21F7224BCEFE00AF87E3 /* NibDesignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 		C4AA21E0224B8ABA00AF87E3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C4AA21E1224B8AD400AF87E3 /* CustomErrors.swift */,
+				C4AA21E1224B8AD400AF87E3 /* CustomError.swift */,
 				C4451110224BE14A00BA9F79 /* Themes.swift */,
 				C403B34123617F4C003CDB1B /* ConnectionManager.swift */,
 			);
@@ -465,7 +465,7 @@
 				C403B34223617F4C003CDB1B /* ConnectionManager.swift in Sources */,
 				C4AA21F3224BCD8400AF87E3 /* DayNightView.swift in Sources */,
 				C4AA21FC224BD07700AF87E3 /* UINib+Demo.swift in Sources */,
-				C4AA21E2224B8AD400AF87E3 /* CustomErrors.swift in Sources */,
+				C4AA21E2224B8AD400AF87E3 /* CustomError.swift in Sources */,
 				C4451111224BE14A00BA9F79 /* Themes.swift in Sources */,
 				C4AA2138224B73C100AF87E3 /* MasterPresenterProtocol.swift in Sources */,
 				C4AA21CD224B79A300AF87E3 /* DetailInteractor.swift in Sources */,

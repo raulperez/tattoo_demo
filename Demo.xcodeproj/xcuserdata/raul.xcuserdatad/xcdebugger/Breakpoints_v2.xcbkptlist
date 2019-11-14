@@ -3,4 +3,134 @@
    uuid = "AEB4943D-3FA9-454B-A2C5-4705754531E6"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5136492C-5F2B-44EF-895B-6E6BA75807F6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/Utils/ConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "retrieveTattooFeed(page:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5950332-304E-47A7-81BE-EFCE6F564A39"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/Utils/ConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "retrieveTattooFeed(page:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "538D5B11-DD60-4FFC-BAFB-132F8DAD322B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/Modules/Master/Presenter/MasterPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "retrieveTattooFeed(page:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "538D5B11-DD60-4FFC-BAFB-132F8DAD322B - c767898558276381"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Demo.Result&lt;Demo.TattooFeed, Demo.CustomError&gt;) -&gt; () in Demo.MasterPresenter.retrieveTattooFeed(page: Swift.Optional&lt;Swift.UInt&gt;) -&gt; ()"
+                  moduleName = "Demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/raul/Desktop/Material/Demo%202/Demo/Modules/Master/Presenter/MasterPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "123">
+               </Location>
+               <Location
+                  uuid = "538D5B11-DD60-4FFC-BAFB-132F8DAD322B - c767898558276381"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Demo.Result&lt;Demo.TattooFeed, Demo.CustomError&gt;) -&gt; () in Demo.MasterPresenter.retrieveTattooFeed(page: Swift.Optional&lt;Swift.UInt&gt;) -&gt; ()"
+                  moduleName = "Demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/raul/Desktop/Material/Demo%202/Demo/Modules/Master/Presenter/MasterPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "155">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5F7DD4F-BE44-44CD-BE14-85A6AA7001FB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/Modules/Master/Presenter/MasterPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "retrieveTattoo(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A5F7DD4F-BE44-44CD-BE14-85A6AA7001FB - 1a33539c468ef6a9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Demo.Result&lt;Demo.Tattoo, Demo.CustomError&gt;) -&gt; () in Demo.MasterPresenter.retrieveTattoo(with: Swift.String) -&gt; ()"
+                  moduleName = "Demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/raul/Desktop/Material/Demo%202/Demo/Modules/Master/Presenter/MasterPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "273">
+               </Location>
+               <Location
+                  uuid = "A5F7DD4F-BE44-44CD-BE14-85A6AA7001FB - 1a33539c468ef6a9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Demo.Result&lt;Demo.Tattoo, Demo.CustomError&gt;) -&gt; () in Demo.MasterPresenter.retrieveTattoo(with: Swift.String) -&gt; ()"
+                  moduleName = "Demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/raul/Desktop/Material/Demo%202/Demo/Modules/Master/Presenter/MasterPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "329">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

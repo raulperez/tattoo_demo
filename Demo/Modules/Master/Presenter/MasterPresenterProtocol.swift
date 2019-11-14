@@ -13,4 +13,5 @@ protocol MasterPresenterProtocol {
     func retrieveTattooFeed()
     func retrieveTattooFeed(page: UInt?)
     func retrieveTattoo(with identifier: String)
+    func downloadTattooImage(with url: String, completion: ImageHandler?)
 }

@@ -10,4 +10,5 @@ import Foundation
 
 protocol DetailInteractorProtocol {
 
+    func downloadImage(with url: String, completion: ImageHandler?)
 }

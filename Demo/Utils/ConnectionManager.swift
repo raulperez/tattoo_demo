@@ -8,20 +8,31 @@
 
 import UIKit
 
+enum Result<Value, Error: Swift.Error> {
+    case success(Value)
+    case failure(Error)
+}
+
+typealias TattooFeedHandler = (Result<TattooFeed, CustomError>) -> Swift.Void
+typealias TattooHandler = (Result<Tattoo, CustomError>) -> Swift.Void
+typealias ImageHandler = (Result<UIImage, CustomError>, Bool?) -> Swift.Void
+
 class ConnectionManager: NSObject {
 
-    static func retrieveTattooFeed(page: UInt? = 0, completion: @escaping (Bool, TattooFeed?, Error?) -> Swift.Void) {
+    static func retrieveTattooFeed(page: UInt? = 0, completion: TattooFeedHandler? = nil) {
         guard let page = page else {
             print("Page invalid")
 
-            completion(false, nil, CustomErrors.pageInvalid)
+            guard let completion = completion else { return }
+            completion(.failure(CustomError.pageInvalid))
             return
         }
 
         guard let url = URL(string: "https://backend-api.tattoodo.com/api/v2/search/posts?page=\(String(page))") else {
             print("URL is empty or invalid")
 
-            completion(false, nil, CustomErrors.invalidOrEmptyURL)
+            guard let completion = completion else { return }
+            completion(.failure(CustomError.invalidOrEmptyURL))
             return
         }
         
@@ -37,7 +48,8 @@ class ConnectionManager: NSObject {
             guard let data = data else {
                 print("Error downloading data")
 
-                completion(false, nil, CustomErrors.cannotReceiveData)
+                guard let completion = completion else { return }
+                completion(.failure(CustomError.cannotReceiveData))
                 return
             }
             
@@ -46,20 +58,24 @@ class ConnectionManager: NSObject {
 
                 //print("Response data:", tattooFeed)
 
-                completion(true, tattooFeed, nil)
+                guard let completion = completion else { return }
+                completion(.success(tattooFeed))
             } catch let error {
                 print("Error decoding data: ", error)
-                completion(false, nil, CustomErrors.cannotReceiveData)
+
+                guard let completion = completion else { return }
+                completion(.failure(CustomError.cannotReceiveData))
             }
         }.resume()
     }
     
-    static func retrieveTattoo(with identifier: String, completion: @escaping (Bool, Tattoo?, Error?) -> Swift.Void) {
+    static func retrieveTattoo(with identifier: String, completion: TattooHandler? = nil) {
 
         guard let url = URL(string: "https://backend-api.tattoodo.com/api/v2/posts/\(identifier)") else {
             print("URL is empty or invalid")
 
-            completion(false, nil, CustomErrors.invalidOrEmptyURL)
+            guard let completion = completion else { return }
+            completion(.failure(CustomError.invalidOrEmptyURL))
             return
         }
 
@@ -74,7 +90,8 @@ class ConnectionManager: NSObject {
             guard let data = data else {
                 print("Error downloading data")
 
-                completion(false, nil, CustomErrors.cannotReceiveData)
+                guard let completion = completion else { return }
+                completion(.failure(CustomError.cannotReceiveData))
                 return
             }
             
@@ -86,40 +103,63 @@ class ConnectionManager: NSObject {
                 guard let tattoo = tattooData.data else {
                     print("Error parsing data")
 
-                    completion(false, nil, CustomErrors.cannotReceiveData)
+                    guard let completion = completion else { return }
+                    completion(.failure(CustomError.cannotReceiveData))
                     return
                 }
 
-                completion(true, tattoo, nil)
+                guard let completion = completion else { return }
+                completion(.success(tattoo))
             } catch let error {
                 print("Error decoding data: ", error)
-                completion(false, nil, CustomErrors.cannotReceiveData)
+
+                guard let completion = completion else { return }
+                completion(.failure(CustomError.cannotReceiveData))
             }
         }.resume()
     }
     
-    static func downloadImage(with url: String, completion: @escaping (UIImage?, Error?, Bool) -> ()) {
+    static func downloadImage(with url: String, completion: ImageHandler? = nil) {
         guard let url = URL(string: url) else {
             print("URL is empty or invalid")
 
-            completion(nil, CustomErrors.invalidOrEmptyURL, false)
+            guard let completion = completion else { return }
+            completion(.failure(CustomError.invalidOrEmptyURL), nil)
             return
         }
         
         let request = URLRequest.init(url: url, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 60)
         
         if let data = URLCache.shared.cachedResponse(for: request)?.data {
-            completion(UIImage(data: data), nil, true)
+            guard let image = UIImage(data: data) else {
+                
+                guard let completion = completion else { return }
+                completion(.failure(CustomError.cannotReceiveData), nil)
+                return
+            }
+            
+            guard let completion = completion else { return }
+            completion(.success(image), true)
         } else {
             URLSession.shared.dataTask(with: request) {
                 (data, response, error) in
                 
                 guard let data = data, error == nil else {
-                    completion(nil, error, false)
+
+                    guard let completion = completion else { return }
+                    completion(.failure(CustomError.cannotReceiveData), nil)
                     return
                 }
                 
-                completion(UIImage(data: data), nil, false)
+                guard let image = UIImage(data: data) else {
+                    
+                    guard let completion = completion else { return }
+                    completion(.failure(CustomError.cannotReceiveData), nil)
+                    return
+                }
+                
+                guard let completion = completion else { return }
+                completion(.success(image), true)
             }.resume()
         }
     }

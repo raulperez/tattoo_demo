@@ -26,21 +26,27 @@ class DetailPresenter {
 extension DetailPresenter : DetailPresenterProtocol {
 
     func downloadTattooImage(with url: String) {
-        ConnectionManager.downloadImage(with: url) {
-            [unowned self] (image, error, cached) in
-
-            guard let image = image else { return }
-            self.viewController?.populateTattooImage(with: image)
-        }
+        interactor?.downloadImage(with: url, completion: {
+            (result, cached) in
+            
+            switch result {
+            case .success(let image):
+                self.viewController?.populateTattooImage(with: image)
+            case .failure(_): break
+            }
+        })
     }
 
     func downloadArtistImage(with url: String) {
-        ConnectionManager.downloadImage(with: url) {
-            (image, error, cached) in
+        interactor?.downloadImage(with: url, completion: {
+            (result, cached) in
             
-            guard let image = image else { return }
-            self.viewController?.populateArtistImage(with: image)
-        }
+            switch result {
+            case .success(let image):
+                self.viewController?.populateArtistImage(with: image)
+            case .failure(_): break
+            }
+        })
     }
 
 }

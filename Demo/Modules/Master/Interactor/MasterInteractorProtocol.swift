@@ -10,6 +10,7 @@ import Foundation
 
 protocol MasterInteractorProtocol {
     
-    func retrieveTattooFeed(page: UInt?, completion: @escaping (Bool, TattooFeed?, Error?) -> Swift.Void)
-    func retrieveTattoo(with identifier: String, completion: @escaping (Bool, Tattoo?, Error?) -> Swift.Void)
+    func retrieveTattooFeed(page: UInt?, completion: TattooFeedHandler?)
+    func retrieveTattoo(with identifier: String, completion: TattooHandler?)
+    func downloadImage(with url: String, completion: ImageHandler?)
 }

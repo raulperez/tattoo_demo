@@ -13,6 +13,8 @@ class TattooFeedCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    private var presenter : MasterPresenterProtocol?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -68,36 +70,46 @@ class TattooFeedCollectionViewCell: UICollectionViewCell {
         return preferredLayoutAttributes
     }
     
+    func setPresenter(_ presenter: MasterPresenterProtocol?) {
+        self.presenter = presenter
+    }
+    
     func downloadImage(with url: String) {
-        ConnectionManager.downloadImage(with: url) {
-            (image, error, cached) in
-            
-            DispatchQueue.global(qos: .userInitiated).async {
-                DispatchQueue.main.async {
-                    [unowned self] in
-                      
-                    guard let image = image else { return }
-                    
-                    /*
-                    let newSize = CGSize(width: 207, height: 207)
-                    let renderer = UIGraphicsImageRenderer(size: newSize)
-                    let imageResized = renderer.image { _ in
-                        image.draw(in: CGRect.init(origin: CGPoint.zero, size: newSize))
-                    }
-*/
-                    
-                    self.imageView?.image = image //Resized
-                    
-                    if !cached {
-                        self.imageView.alpha = 0
+        guard let presenter = presenter else { return }
 
-                        UIView.animate(withDuration: 1) {
-                            self.imageView.alpha = 1
+        presenter.downloadTattooImage(with: url) {
+            (result, cached) in
+            
+            switch result {
+            case .success(let image):
+                DispatchQueue.global(qos: .userInitiated).async {
+                    DispatchQueue.main.async {
+                        [unowned self] in
+                                                  
+                        /*
+                        let newSize = CGSize(width: 207, height: 207)
+                        let renderer = UIGraphicsImageRenderer(size: newSize)
+                        let imageResized = renderer.image { _ in
+                            image.draw(in: CGRect.init(origin: CGPoint.zero, size: newSize))
                         }
-                    } else {
-                        self.imageView.alpha = 1
+                        */
+                        
+                        self.imageView?.image = image //Resized
+                        
+                        if let cachedValue = cached,
+                            cachedValue {
+                            self.imageView.alpha = 1
+                        } else {
+                            self.imageView.alpha = 0
+
+                            UIView.animate(withDuration: 1) {
+                                self.imageView.alpha = 1
+                            }
+                        }
                     }
                 }
+
+            case .failure(_): break
             }
         }
     }

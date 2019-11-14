@@ -133,7 +133,10 @@ extension MasterViewController : UICollectionViewDelegate {
 
         let tattoo = tattoos[indexPath.row]
         
-        if let imageURL = tattoo.image?.url { cell.downloadImage(with: imageURL) }
+        if let imageURL = tattoo.image?.url {
+            cell.setPresenter(presenter)
+            cell.downloadImage(with: imageURL)
+        }
         
         return cell
     }

@@ -21,29 +21,15 @@ class MasterInteractor {
 
 extension MasterInteractor : MasterInteractorProtocol {
     
-    func retrieveTattooFeed(page: UInt? = 0, completion: @escaping (Bool, TattooFeed?, Error?) -> Swift.Void) {
-        ConnectionManager.retrieveTattooFeed(page: page) {
-            (success, feed, error) in
-            
-            if error != nil {
-                completion(false, nil, error)
-                return
-            }
-            
-            completion(true, feed, nil)
-        }
+    func retrieveTattooFeed(page: UInt? = 0, completion: TattooFeedHandler? = nil) {
+        ConnectionManager.retrieveTattooFeed(page: page, completion: completion)
     }
     
-    func retrieveTattoo(with identifier: String, completion: @escaping (Bool, Tattoo?, Error?) -> Swift.Void) {
-        ConnectionManager.retrieveTattoo(with: identifier, completion: {
-            (success, detail, error) in
-            
-            if error != nil {
-                completion(false, nil, error)
-                return
-            }
-            
-            completion(true, detail, nil)
-        })
+    func retrieveTattoo(with identifier: String, completion: TattooHandler? = nil) {
+        ConnectionManager.retrieveTattoo(with: identifier, completion: completion)
+    }
+    
+    func downloadImage(with url: String, completion: ImageHandler? = nil) {
+        ConnectionManager.downloadImage(with: url, completion: completion)
     }
 }

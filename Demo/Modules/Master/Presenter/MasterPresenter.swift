@@ -30,43 +30,37 @@ extension MasterPresenter : MasterPresenterProtocol {
     
     func retrieveTattooFeed(page: UInt? = 0) {
         interactor?.retrieveTattooFeed(page: page, completion: {
-            (success, feed, error) in
-
-            if error != nil {
+            (result) in
+            
+            switch result {
+            case .success(let tattooFeed):
+                self.viewController?.populate(tattooFeed)
+            case .failure(_):
                 self.router?.showCannotReadTattooFeed()
-                return
             }
-
-            guard let tattooFeed = feed else {
-                self.router?.showCannotReadTattooFeed()
-                return
-            }
-
-            self.viewController?.populate(tattooFeed)
         })
     }
     
     func retrieveTattoo(with identifier: String) {
         interactor?.retrieveTattoo(with: identifier, completion: {
-            (success, detail, error) in
-
-            if error != nil {
+            (result) in
+            
+            switch result {
+            case .success(let tattoo):
+                DispatchQueue.global(qos: .userInitiated).async {
+                  DispatchQueue.main.async {
+                      [unowned self] in
+                      
+                      self.router?.showDetail(with: tattoo)
+                  }
+                }
+            case .failure(_):
                 self.router?.showCannotReadTattooDetail()
-                return
-            }
-
-            guard let tattoo = detail else {
-                self.router?.showCannotReadTattooDetail()
-                return
-            }
-
-            DispatchQueue.global(qos: .userInitiated).async {
-              DispatchQueue.main.async {
-                  [unowned self] in
-                  
-                  self.router?.showDetail(with: tattoo)
-              }
             }
         })
+    }
+    
+    func downloadTattooImage(with url: String, completion: ImageHandler?) {
+        interactor?.downloadImage(with: url, completion: completion)
     }
 }
