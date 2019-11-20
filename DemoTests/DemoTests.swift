@@ -32,23 +32,21 @@ class DemoTests: XCTestCase {
         
         // When
         ConnectionManager.retrieveTattoo(with: tattooId) {
-            (success, tattoo, error) in
+            (result) in
 
-            if error != nil {
-                let description = error?.localizedDescription ?? "<no error description>"
-                XCTFail("Didn't downloaded tattoo data from fake response\nError: \(description)")
-            }
-            
-            guard let tattoo = tattoo else {
-                XCTFail("Didn't parsed tattoo data from fake response")
-                return
-            }
-            
-            if success {
+            switch result {
+            case .success(let tattoo):
                 resultTattoo = tattoo
                 promise.fulfill()
-            } else {
-                XCTFail("Didn't result with success even is parsed tattoo from fake response")
+            case .failure(let error):
+                var errorMessage = "Didn't result with success even is parsed tattoo data from fake response."
+                let description = error.localizedDescription
+                
+                if description != "" {
+                    errorMessage.append("\nError: \(description)")
+                }
+
+                XCTFail(errorMessage)
             }
         }
         
@@ -65,23 +63,21 @@ class DemoTests: XCTestCase {
         
         // When
         ConnectionManager.retrieveTattooFeed() {
-            (success, tattooFeed, error) in
+            (result) in
 
-            if error != nil {
-                let description = error?.localizedDescription ?? "<no error description>"
-                XCTFail("Didn't downloaded tattoo feed data from fake response\nError: \(description)")
-            }
-            
-            guard let tattooFeed = tattooFeed else {
-                XCTFail("Didn't parsed tattoo feed data from fake response")
-                return
-            }
-            
-            if success {
+            switch result {
+            case .success(let tattooFeed):
                 resultTattooFeed = tattooFeed
                 promise.fulfill()
-            } else {
-                XCTFail("Didn't result with success even is parsed tattoo feed from fake response")
+            case .failure(let error):
+                var errorMessage = "Didn't result with success even is parsed tattoo feed from fake response."
+                let description = error.localizedDescription
+                
+                if description != "" {
+                    errorMessage.append("\nError: \(description)")
+                }
+
+                XCTFail(errorMessage)
             }
         }
         
@@ -99,19 +95,23 @@ class DemoTests: XCTestCase {
         
         // When
         ConnectionManager.downloadImage(with: url, completion: {
-            (image, error) in
+            (result, cached) in
             
-            if error != nil {
-                XCTFail("Didn't downloaded the image")
+            switch result {
+            case .success(let image):
+                resultImage = image
+                promise.fulfill()
+            case .failure(let error):
+                var errorMessage = "Didn't downloaded the image."
+                let description = error.localizedDescription
+                
+                if description != "" {
+                    errorMessage.append("\nError: \(description)")
+                }
+
+                XCTFail(errorMessage)
             }
-            
-            guard let image = image else {
-                XCTFail("Didn't downloaded the image")
-                return
-            }
-            
-            resultImage = image
-            promise.fulfill()
+
         })
         
         wait(for: [promise], timeout: 10)
@@ -127,23 +127,21 @@ class DemoTests: XCTestCase {
         
         // When
         masterInteractor?.retrieveTattooFeed() {
-            (success, tattooFeed, error) in
+            (result) in
 
-            if error != nil {
-                let description = error?.localizedDescription ?? "<no error description>"
-                XCTFail("Didn't downloaded tattoo feed data from fake response\nError: \(description)")
-            }
-            
-            guard let tattooFeed = tattooFeed else {
-                XCTFail("Didn't parsed tattoo feed data from fake response")
-                return
-            }
-            
-            if success {
+            switch result {
+            case .success(let tattooFeed):
                 resultTattooFeed = tattooFeed
                 promise.fulfill()
-            } else {
-                XCTFail("Didn't result with success even is parsed tattoo feed from fake response")
+            case .failure(let error):
+                var errorMessage = "Didn't result with success even is parsed tattoo feed from fake response."
+                let description = error.localizedDescription
+                
+                if description != "" {
+                    errorMessage.append("\nError: \(description)")
+                }
+
+                XCTFail(errorMessage)
             }
         }
         
@@ -161,23 +159,21 @@ class DemoTests: XCTestCase {
         
         // When
         masterInteractor?.retrieveTattoo(with: tattooId) {
-            (success, tattoo, error) in
+            (result) in
 
-            if error != nil {
-                let description = error?.localizedDescription ?? "<no error description>"
-                XCTFail("Didn't downloaded tattoo data from fake response\nError: \(description)")
-            }
-            
-            guard let tattoo = tattoo else {
-                XCTFail("Didn't parsed tattoo data from fake response")
-                return
-            }
-            
-            if success {
+            switch result {
+            case .success(let tattoo):
                 resultTattoo = tattoo
                 promise.fulfill()
-            } else {
-                XCTFail("Didn't result with success even is parsed tattoo from fake response")
+            case .failure(let error):
+                var errorMessage = "Didn't result with success even is parsed tattoo data from fake response."
+                let description = error.localizedDescription
+                
+                if description != "" {
+                    errorMessage.append("\nError: \(description)")
+                }
+
+                XCTFail(errorMessage)
             }
         }
         
@@ -212,21 +208,22 @@ class DemoTests: XCTestCase {
         let promise = expectation(description: "TattooFeed downloaded and parsed")
 
         interactor.retrieveTattooFeed(page: 0, completion: {
-            (success, feed, error) in
+            (result) in
 
-            if error != nil {
-                let description = error?.localizedDescription ?? "<no error description>"
-                XCTFail("Didn't downloaded tattoo feed data from fake response\nError: \(description)")
-                return
+            switch result {
+            case .success(let tattooFeed):
+                viewController.populate(tattooFeed)
+                promise.fulfill()
+            case .failure(let error):
+                var errorMessage = "Didn't result with success even is parsed tattoo feed from fake response."
+                let description = error.localizedDescription
+                
+                if description != "" {
+                    errorMessage.append("\nError: \(description)")
+                }
+
+                XCTFail(errorMessage)
             }
-
-            guard let tattooFeed = feed else {
-                XCTFail("Didn't downloaded tattoo feed data from fake response")
-                return
-            }
-
-            viewController.populate(tattooFeed)
-            promise.fulfill()
         })
 
         XCTAssertEqual(masterViewController.tattoos.count, 0, "Tattoos list should be empty before task runs")
